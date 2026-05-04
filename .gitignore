@@ -46,3 +46,8 @@ Desktop.ini
 # User Uploads
 uploads/
 src/main/webapp/uploads/
+
+# Unwanted scripts
+script.md
+generate_pdf.py
+generate_pdf_v2.py
