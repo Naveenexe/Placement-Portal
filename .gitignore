@@ -1,53 +1,44 @@
-# Java
-*.class
-*.log
-*.ctxt
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# Maven
 target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.restoreBackup
-.releaseBackup.xml
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+.kotlin
 
-# IntelliJ IDEA
-.idea/
-*.iml
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
 *.iws
+*.iml
 *.ipr
-out/
 
-# Eclipse
-.settings/
-.project
+### Eclipse ###
+.apt_generated
 .classpath
 .factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# VS Code
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
 .vscode/
 
-# OS Files
-Thumbs.db
-Desktop.ini
+### Mac OS ###
 .DS_Store
 
-# User Uploads
-uploads/
-src/main/webapp/uploads/
-
-# Unwanted scripts
-script.md
+### Local scripts (not part of project) ###
 generate_pdf.py
 generate_pdf_v2.py
+script.md
