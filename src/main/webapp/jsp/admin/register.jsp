@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Registration | Ignite</title>
-    <!-- Modern Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Admin Registration · Ignite</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
-<body>
+<body class="auth-body">
 
     <div class="auth-container">
-        <div class="auth-left" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+        <div class="auth-left admin">
             <div class="auth-left-content">
                 <div class="brand-logo">
                     <div class="brand-logo-circle" style="color: #0f172a;">
@@ -20,50 +18,43 @@
                     </div>
                     Ignite Admin
                 </div>
-                <h1>System<br>Onboarding</h1>
-                <p>Register as an administrator to gain access to system management, user control, and hiring pipelines.</p>
-                <div style="margin-top: 2rem;">
-                    <a href="login.jsp" style="color: white; text-decoration: none; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; width: max-content; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.2s;">
-                        <i class="ri-arrow-left-line"></i> Back to Login
-                    </a>
-                </div>
+                <h1>System<br>onboarding</h1>
+                <p>Register as an administrator to access system management, user control, and placement pipelines.</p>
+                <a href="login.jsp" class="auth-back-link"><i class="ri-arrow-left-line"></i> Back to login</a>
             </div>
         </div>
+
         <div class="auth-right">
             <h2>Admin Registration</h2>
-            <% 
+            <%
                String errorMsg = (String) session.getAttribute("errorMsg");
-               if (errorMsg != null) { 
+               if (errorMsg != null) {
             %>
-                <div style="background-color: #fee2e2; border-left: 4px solid #ef4444; color: #b91c1c; padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px; display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem;">
-                    <i class="ri-error-warning-fill" style="font-size: 1.25rem;"></i> <%= errorMsg %>
-                </div>
-            <% 
-                   session.removeAttribute("errorMsg");
-               } 
-            %>
+                <div class="alert alert-error"><i class="ri-error-warning-fill"></i> <%= errorMsg %></div>
+            <%     session.removeAttribute("errorMsg"); } %>
+
             <form action="/placement-portal/admin-register" method="post">
                 <div class="input-group">
                     <label class="input-label">Username</label>
-                    <div class="input-field">
+                    <div class="input-field admin">
                         <i class="ri-user-settings-line input-icon"></i>
                         <input type="text" name="username" placeholder="Choose a username" required>
                     </div>
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label">Password</label>
-                    <div class="input-field">
+                    <div class="input-field admin">
                         <i class="ri-lock-line input-icon"></i>
                         <input type="password" name="password" placeholder="••••••••" required>
                     </div>
                 </div>
-                
-                <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #0f172a 0%, #334155 100%); box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.3); margin-top: 1rem;">Register Account</button>
+
+                <button type="submit" class="btn-primary admin" style="margin-top: 0.5rem;">Register Account <i class="ri-check-line"></i></button>
             </form>
-            
+
             <div class="auth-footer">
-                Already have an account? <a href="login.jsp" style="color: #0f172a;">Sign in</a>
+                Already have an account? <a href="login.jsp" style="color: var(--admin);">Sign in</a>
             </div>
         </div>
     </div>

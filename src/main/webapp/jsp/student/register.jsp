@@ -4,62 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration | Ignite</title>
-    <!-- Modern Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Student Registration · Ignite</title>
     <link rel="stylesheet" href="../../css/style.css">
-    <style>
-        .row {
-            display: flex;
-            gap: 1rem;
-        }
-        .row .input-group {
-            flex: 1;
-        }
-        /* Make right panel scrollable if it gets too tall */
-        .auth-right {
-            overflow-y: auto;
-            max-height: 90vh; 
-        }
-        /* Custom scrollbar for better look */
-        .auth-right::-webkit-scrollbar {
-            width: 8px;
-        }
-        .auth-right::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .auth-right::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        .auth-right::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
 </head>
-<body>
+<body class="auth-body">
 
     <div class="auth-container">
-        <div class="auth-left">
+        <div class="auth-left student">
             <div class="auth-left-content">
                 <div class="brand-logo">
-                    <div class="brand-logo-circle">
+                    <div class="brand-logo-circle" style="color: #1e3a8a;">
                         <i class="ri-graduation-cap-fill"></i>
                     </div>
                     Ignite
                 </div>
-                <h1>Join Us<br>Today!</h1>
+                <h1>Join us<br>today!</h1>
                 <p>Create your student account to discover opportunities, build your profile, and land your ideal job.</p>
-                <div style="margin-top: 2rem;">
-                    <a href="login.jsp" style="color: white; text-decoration: none; font-size: 0.875rem; display: flex; align-items: center; gap: 0.5rem; width: max-content; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.2s;">
-                        <i class="ri-arrow-left-line"></i> Back to Login
-                    </a>
-                </div>
+                <a href="login.jsp" class="auth-back-link"><i class="ri-arrow-left-line"></i> Back to login</a>
             </div>
         </div>
+
         <div class="auth-right">
-            <h2>Student Registration</h2>
+            <h2>Create Student Account</h2>
+            <%
+               String errorMsg = (String) session.getAttribute("errorMsg");
+               if (errorMsg != null) {
+            %>
+                <div class="alert alert-error"><i class="ri-error-warning-fill"></i> <%= errorMsg %></div>
+            <%     session.removeAttribute("errorMsg"); } %>
+
             <form action="/placement-portal/register" method="post">
                 <div class="input-group">
                     <label class="input-label">Full Name</label>
@@ -76,7 +49,7 @@
                         <input type="email" name="email" placeholder="name@mail.com" required>
                     </div>
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label">Password</label>
                     <div class="input-field">
@@ -90,15 +63,15 @@
                         <label class="input-label">CGPA</label>
                         <div class="input-field">
                             <i class="ri-bar-chart-line input-icon"></i>
-                            <input type="number" step="0.01" name="cgpa" placeholder="Ex: 8.5" required>
+                            <input type="number" step="0.01" name="cgpa" placeholder="8.5" required>
                         </div>
                     </div>
-                    
+
                     <div class="input-group">
                         <label class="input-label">Branch</label>
                         <div class="input-field">
                             <i class="ri-book-read-line input-icon"></i>
-                            <input type="text" name="branch" placeholder="Ex: CS">
+                            <input type="text" name="branch" placeholder="Computer Science">
                         </div>
                     </div>
                 </div>
@@ -110,10 +83,10 @@
                         <input type="text" name="skills" placeholder="Java, SQL, React...">
                     </div>
                 </div>
-                
-                <button type="submit" class="btn-primary" style="margin-top: 1rem;">Create Account</button>
+
+                <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">Create Account <i class="ri-check-line"></i></button>
             </form>
-            
+
             <div class="auth-footer">
                 Already have an account? <a href="login.jsp">Sign in</a>
             </div>

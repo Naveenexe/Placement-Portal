@@ -9,17 +9,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+
         try {
-            // Get form data
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
@@ -27,7 +30,6 @@ public class RegisterServlet extends HttpServlet {
             String skills = request.getParameter("skills");
             String branch = request.getParameter("branch");
 
-            // Create Student object
             Student s = new Student();
             s.setName(name);
             s.setEmail(email);
@@ -36,20 +38,21 @@ public class RegisterServlet extends HttpServlet {
             s.setSkills(skills);
             s.setBranch(branch);
 
-            // DAO call
             StudentDAO dao = new StudentDAOImpl();
             boolean result = dao.registerStudent(s);
 
-            // Response
             if (result) {
-                response.getWriter().println("Registration Successful!");
+                session.setAttribute("succMsg", "Registration successful! Please sign in.");
+                response.sendRedirect("jsp/student/login.jsp?success=registered");
             } else {
-                response.getWriter().println("Registration Failed!");
+                session.setAttribute("errorMsg", "Registration failed. Email may already be in use.");
+                response.sendRedirect("jsp/student/register.jsp");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("Error occurred!");
+            session.setAttribute("errorMsg", "An error occurred during registration: " + e.getMessage());
+            response.sendRedirect("jsp/student/register.jsp");
         }
     }
 }
