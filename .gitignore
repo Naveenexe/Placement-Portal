@@ -42,3 +42,4 @@ build/
 generate_pdf.py
 generate_pdf_v2.py
 script.md
+.env
